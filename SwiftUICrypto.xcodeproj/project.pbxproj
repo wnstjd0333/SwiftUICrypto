@@ -13,6 +13,7 @@
 		F7A453EB282B6A6D005E23F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453D9282B6A6A005E23F8 /* ContentView.swift */; };
 		F7A453EC282B6A6D005E23F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7A453DA282B6A6D005E23F8 /* Assets.xcassets */; };
 		F7A453ED282B6A6D005E23F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7A453DA282B6A6D005E23F8 /* Assets.xcassets */; };
+		F7A453F8282B6F06005E23F8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453F7282B6F06005E23F8 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		F7A453DF282B6A6D005E23F8 /* SwiftUICrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUICrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A453E5282B6A6D005E23F8 /* SwiftUICrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUICrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A453E7282B6A6D005E23F8 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		F7A453F7282B6F06005E23F8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 		F7A453D2282B6A6A005E23F8 = {
 			isa = PBXGroup;
 			children = (
+				F7A453F6282B6EF8005E23F8 /* Extensions */,
 				F7A453D7282B6A6A005E23F8 /* Shared */,
 				F7A453E6282B6A6D005E23F8 /* macOS */,
 				F7A453E0282B6A6D005E23F8 /* Products */,
@@ -76,6 +79,14 @@
 				F7A453E7282B6A6D005E23F8 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		F7A453F6282B6EF8005E23F8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F7A453F7282B6F06005E23F8 /* Color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +189,7 @@
 			files = (
 				F7A453EA282B6A6D005E23F8 /* ContentView.swift in Sources */,
 				F7A453E8282B6A6D005E23F8 /* SwiftUICryptoApp.swift in Sources */,
+				F7A453F8282B6F06005E23F8 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +327,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
@@ -345,6 +358,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
