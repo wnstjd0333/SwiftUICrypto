@@ -21,6 +21,7 @@
 		F7A4540C282D19CF005E23F8 /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4540B282D19CF005E23F8 /* CoinRowView.swift */; };
 		F7A4540E282D19F5005E23F8 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4540D282D19F5005E23F8 /* PreviewProvider.swift */; };
 		F7A45410282D1A30005E23F8 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4540F282D1A30005E23F8 /* Double.swift */; };
+		F7A45412282D1EB0005E23F8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A45411282D1EB0005E23F8 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		F7A4540B282D19CF005E23F8 /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		F7A4540D282D19F5005E23F8 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		F7A4540F282D1A30005E23F8 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		F7A45411282D1EB0005E23F8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		F7A453FC282C08C7005E23F8 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				F7A45411282D1EB0005E23F8 /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7A4540C282D19CF005E23F8 /* CoinRowView.swift in Sources */,
+				F7A45412282D1EB0005E23F8 /* HomeViewModel.swift in Sources */,
 				F7A453EA282B6A6D005E23F8 /* ContentView.swift in Sources */,
 				F7A45401282C0944005E23F8 /* HomeView.swift in Sources */,
 				F7A453E8282B6A6D005E23F8 /* SwiftUICryptoApp.swift in Sources */,
