@@ -12,7 +12,7 @@ struct SwiftUICryptoApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                HomeView()
                     .navigationBarHidden(true)
             }
         }
