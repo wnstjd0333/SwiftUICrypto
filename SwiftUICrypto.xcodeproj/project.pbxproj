@@ -23,6 +23,7 @@
 		F7A45410282D1A30005E23F8 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4540F282D1A30005E23F8 /* Double.swift */; };
 		F7A45412282D1EB0005E23F8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A45411282D1EB0005E23F8 /* HomeViewModel.swift */; };
 		F7A45415282D21AD005E23F8 /* CoinDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A45414282D21AD005E23F8 /* CoinDataService.swift */; };
+		F7A45418282D2428005E23F8 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A45417282D2428005E23F8 /* NetworkingManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		F7A4540F282D1A30005E23F8 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		F7A45411282D1EB0005E23F8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F7A45414282D21AD005E23F8 /* CoinDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDataService.swift; sourceTree = "<group>"; };
+		F7A45417282D2428005E23F8 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				F7A453D8282B6A6A005E23F8 /* SwiftUICryptoApp.swift */,
+				F7A45416282D2413005E23F8 /* Utilities */,
 				F7A453F6282B6EF8005E23F8 /* Extensions */,
 				F7A45413282D2144005E23F8 /* Services */,
 				F7A45408282C0D1F005E23F8 /* Model */,
@@ -178,6 +181,14 @@
 				F7A45414282D21AD005E23F8 /* CoinDataService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		F7A45416282D2413005E23F8 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F7A45417282D2428005E23F8 /* NetworkingManager.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +297,7 @@
 				F7A453E8282B6A6D005E23F8 /* SwiftUICryptoApp.swift in Sources */,
 				F7A45405282C09A7005E23F8 /* CircleButtonView.swift in Sources */,
 				F7A453F8282B6F06005E23F8 /* Color.swift in Sources */,
+				F7A45418282D2428005E23F8 /* NetworkingManager.swift in Sources */,
 				F7A45407282C0A61005E23F8 /* CircleButtonAnimationView.swift in Sources */,
 				F7A4540E282D19F5005E23F8 /* PreviewProvider.swift in Sources */,
 				F7A45410282D1A30005E23F8 /* Double.swift in Sources */,
