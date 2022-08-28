@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F73DAF6D282FEE7700BF067B /* PortfolioContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F73DAF6B282FEE7700BF067B /* PortfolioContainer.xcdatamodeld */; };
 		F73DAF6F282FEF6B00BF067B /* PortfolioDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73DAF6E282FEF6B00BF067B /* PortfolioDataService.swift */; };
+		F774510C28BB620E00133505 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F774510B28BB620E00133505 /* DetailView.swift */; };
 		F77D5C80284CBD7A00313226 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77D5C7F284CBD7A00313226 /* HapticManager.swift */; };
 		F7A453E8282B6A6D005E23F8 /* SwiftUICryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453D8282B6A6A005E23F8 /* SwiftUICryptoApp.swift */; };
 		F7A453E9282B6A6D005E23F8 /* SwiftUICryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453D8282B6A6A005E23F8 /* SwiftUICryptoApp.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		F73DAF6C282FEE7700BF067B /* PortfolioContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PortfolioContainer.xcdatamodel; sourceTree = "<group>"; };
 		F73DAF6E282FEF6B00BF067B /* PortfolioDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDataService.swift; sourceTree = "<group>"; };
+		F774510B28BB620E00133505 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		F77D5C7F284CBD7A00313226 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		F7A453D8282B6A6A005E23F8 /* SwiftUICryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICryptoApp.swift; sourceTree = "<group>"; };
 		F7A453D9282B6A6A005E23F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F774510828BB61D900133505 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				F774510A28BB61FF00133505 /* ViewModels */,
+				F774510928BB61F300133505 /* Views */,
+			);
+			name = Detail;
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F774510928BB61F300133505 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F774510B28BB620E00133505 /* DetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F774510A28BB61FF00133505 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		F7A453D2282B6A6A005E23F8 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +143,7 @@
 				F7A45413282D2144005E23F8 /* Services */,
 				F7A45408282C0D1F005E23F8 /* Model */,
 				F7A453FA282C08AF005E23F8 /* Core */,
+				F774510828BB61D900133505 /* Detail */,
 				F7A453D9282B6A6A005E23F8 /* ContentView.swift */,
 				F7A453DA282B6A6D005E23F8 /* Assets.xcassets */,
 			);
@@ -364,6 +392,7 @@
 				F7A45425282D285E005E23F8 /* UIApplication.swift in Sources */,
 				F7A45405282C09A7005E23F8 /* CircleButtonView.swift in Sources */,
 				F7A453F8282B6F06005E23F8 /* Color.swift in Sources */,
+				F774510C28BB620E00133505 /* DetailView.swift in Sources */,
 				F77D5C80284CBD7A00313226 /* HapticManager.swift in Sources */,
 				F7A45423282D282A005E23F8 /* SearchBarView.swift in Sources */,
 				F7A45418282D2428005E23F8 /* NetworkingManager.swift in Sources */,
