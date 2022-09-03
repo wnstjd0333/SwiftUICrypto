@@ -13,6 +13,7 @@
 		F774510E28BB761600133505 /* CoinDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F774510D28BB761600133505 /* CoinDetailModel.swift */; };
 		F774511028BB78E500133505 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F774510F28BB78E500133505 /* DetailViewModel.swift */; };
 		F774511228BB840500133505 /* CoinDetailDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F774511128BB840500133505 /* CoinDetailDataService.swift */; };
+		F774511528C1ABCD00133505 /* ScreenPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F774511428C1ABCD00133505 /* ScreenPreview.swift */; };
 		F77D5C80284CBD7A00313226 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77D5C7F284CBD7A00313226 /* HapticManager.swift */; };
 		F7A453E8282B6A6D005E23F8 /* SwiftUICryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453D8282B6A6A005E23F8 /* SwiftUICryptoApp.swift */; };
 		F7A453E9282B6A6D005E23F8 /* SwiftUICryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453D8282B6A6A005E23F8 /* SwiftUICryptoApp.swift */; };
@@ -54,6 +55,7 @@
 		F774510D28BB761600133505 /* CoinDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailModel.swift; sourceTree = "<group>"; };
 		F774510F28BB78E500133505 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F774511128BB840500133505 /* CoinDetailDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailDataService.swift; sourceTree = "<group>"; };
+		F774511428C1ABCD00133505 /* ScreenPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPreview.swift; sourceTree = "<group>"; };
 		F77D5C7F284CBD7A00313226 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		F7A453D8282B6A6A005E23F8 /* SwiftUICryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICryptoApp.swift; sourceTree = "<group>"; };
 		F7A453D9282B6A6A005E23F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -132,9 +134,18 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		F774511328C1ABB700133505 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				F774511428C1ABCD00133505 /* ScreenPreview.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		F7A453D2282B6A6A005E23F8 = {
 			isa = PBXGroup;
 			children = (
+				F774511328C1ABB700133505 /* Test */,
 				F7A453D7282B6A6A005E23F8 /* Shared */,
 				F7A453E6282B6A6D005E23F8 /* macOS */,
 				F7A453E0282B6A6D005E23F8 /* Products */,
@@ -385,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F774511528C1ABCD00133505 /* ScreenPreview.swift in Sources */,
 				F73DAF6D282FEE7700BF067B /* PortfolioContainer.xcdatamodeld in Sources */,
 				F7A45427282D5249005E23F8 /* StatisticModel.swift in Sources */,
 				F7A45415282D21AD005E23F8 /* CoinDataService.swift in Sources */,
