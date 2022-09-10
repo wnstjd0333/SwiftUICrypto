@@ -55,6 +55,7 @@ class HomeViewModel: ObservableObject {
         marketDataService.$marketData
             .combineLatest($portfolioCoins)
             .map(mapGlobalMarketData)
+            .receive(on: DispatchQueue.main)
             .sink { returnedStats in
                 self.statistics = returnedStats
                 self.isLoading = false
@@ -149,7 +150,7 @@ class HomeViewModel: ObservableObject {
             return previousValue
         }.reduce(0, +)
         
-        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
+        let percentageChange = ((portfolioValue - previousValue) / previousValue)
         
         let portfolio = StatisticModel(
             title: "Portfolio Value",

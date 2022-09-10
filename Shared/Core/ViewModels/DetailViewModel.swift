@@ -30,6 +30,7 @@ class DetailViewModel: ObservableObject {
         coinDetailServce.$coinDetails
             .combineLatest($coin)
             .map(mapDataToStatistics)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] (returnedArrays) in
                 self?.overviewStatistics = returnedArrays.overview
                 self?.additionalStatistics = returnedArrays.additional
@@ -37,6 +38,7 @@ class DetailViewModel: ObservableObject {
             .store(in: &cancelables)
         
         coinDetailServce.$coinDetails
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] returnedCoinDetails in
                 self?.coinDescription = returnedCoinDetails?.readableDescription
                 self?.websiteURL = returnedCoinDetails?.links?.homepage?.first
