@@ -22,8 +22,6 @@
 		F797E3D428CC934400144F0B /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F797E3D328CC934400144F0B /* LaunchView.swift */; };
 		F7A453E8282B6A6D005E23F8 /* SwiftUICryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453D8282B6A6A005E23F8 /* SwiftUICryptoApp.swift */; };
 		F7A453E9282B6A6D005E23F8 /* SwiftUICryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453D8282B6A6A005E23F8 /* SwiftUICryptoApp.swift */; };
-		F7A453EA282B6A6D005E23F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453D9282B6A6A005E23F8 /* ContentView.swift */; };
-		F7A453EB282B6A6D005E23F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453D9282B6A6A005E23F8 /* ContentView.swift */; };
 		F7A453EC282B6A6D005E23F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7A453DA282B6A6D005E23F8 /* Assets.xcassets */; };
 		F7A453ED282B6A6D005E23F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7A453DA282B6A6D005E23F8 /* Assets.xcassets */; };
 		F7A453F8282B6F06005E23F8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A453F7282B6F06005E23F8 /* Color.swift */; };
@@ -69,7 +67,6 @@
 		F797E3D128CC923D00144F0B /* SwiftUICrypto--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SwiftUICrypto--iOS--Info.plist"; sourceTree = "<group>"; };
 		F797E3D328CC934400144F0B /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		F7A453D8282B6A6A005E23F8 /* SwiftUICryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICryptoApp.swift; sourceTree = "<group>"; };
-		F7A453D9282B6A6A005E23F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F7A453DA282B6A6D005E23F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7A453DF282B6A6D005E23F8 /* SwiftUICrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUICrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A453E5282B6A6D005E23F8 /* SwiftUICrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUICrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,7 +194,6 @@
 				F7A45413282D2144005E23F8 /* Services */,
 				F7A45408282C0D1F005E23F8 /* Model */,
 				F7A453FA282C08AF005E23F8 /* Core */,
-				F7A453D9282B6A6A005E23F8 /* ContentView.swift */,
 				F7A453DA282B6A6D005E23F8 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -445,7 +441,6 @@
 				F7A4540C282D19CF005E23F8 /* CoinRowView.swift in Sources */,
 				F7A45433282FB37B005E23F8 /* XMarkButton.swift in Sources */,
 				F7A45412282D1EB0005E23F8 /* HomeViewModel.swift in Sources */,
-				F7A453EA282B6A6D005E23F8 /* ContentView.swift in Sources */,
 				F7A45421282D2705005E23F8 /* LocalFileManager.swift in Sources */,
 				F7A4542D282F6F10005E23F8 /* MarketDataModel.swift in Sources */,
 				F7A45401282C0944005E23F8 /* HomeView.swift in Sources */,
@@ -483,7 +478,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7A453EB282B6A6D005E23F8 /* ContentView.swift in Sources */,
 				F7A453E9282B6A6D005E23F8 /* SwiftUICryptoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
