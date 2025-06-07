@@ -24,36 +24,49 @@ jobs:
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat >default
           echo Using default scheme: $default
-      - name: Build
-        env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
-        run: |
-          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
-          device_name="iPhone 15"
-          device_os=$(xcrun simctl list devices | grep "$device_name (" | grep -oE '\([0-9.]+\)' | head -1 | tr -d '()')
           
+      - name: Build
+        run: |
+          device_name="iPhone 15"
+          device_os=$(xcrun simctl list devices | grep -A 10 "$device_name (" | grep -Eo "\([0-9\.]+\)" | head -n 1 | tr -d '()')
+          if [ -z "$device_os" ]; then
+            echo "❌ OS version could not be determined for device $device_name"
+            exit 1
+          fi
           destination="platform=iOS Simulator,name=$device_name,OS=$device_os"
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
-          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+
+          scheme=$(cat default)
+          if ls -A | grep -iq \.xcworkspace$; then
+            filetype_parameter="workspace"
+            file_to_build=$(ls -A | grep -i \.xcworkspace$)
+          else
+            filetype_parameter="project"
+            file_to_build=$(ls -A | grep -i \.xcodeproj$)
+          fi
+          
           xcodebuild build-for-testing \
             -scheme "$scheme" \
             -$filetype_parameter "$file_to_build" \
             -destination "$destination"
       - name: Test
-        env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
         run: |
           # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
           device_name="iPhone 15"
-          device_os=$(xcrun simctl list devices | grep "$device_name (" | grep -oE '\([0-9.]+\)' | head -1 | tr -d '()')
-
+          device_os=$(xcrun simctl list devices | grep -A 10 "$device_name (" | grep -Eo "\([0-9\.]+\)" | head -n 1 | tr -d '()')
+          if [ -z "$device_os" ]; then
+            echo "❌ OS version could not be determined for device $device_name"
+            exit 1
+          fi
           destination="platform=iOS Simulator,name=$device_name,OS=$device_os"
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
-          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+          
+          scheme=$(cat default)
+          if ls -A | grep -iq \.xcworkspace$; then
+            filetype_parameter="workspace"
+            file_to_build=$(ls -A | grep -i \.xcworkspace$)
+          else
+            filetype_parameter="project"
+            file_to_build=$(ls -A | grep -i \.xcodeproj$)
+          fi
           xcodebuild test-without-building \
             -scheme "$scheme" \
             -$filetype_parameter "$file_to_build" \
