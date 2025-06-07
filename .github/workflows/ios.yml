@@ -1,63 +1,67 @@
-name: iOS Auto Xcode Workflow
+name: iOS Build & Test
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: ["develop"]
   pull_request:
-    branches: [ "develop" ]
+    branches: ["develop"]
 
 jobs:
-  build:
+  ios-build-test:
     runs-on: macos-latest
+    timeout-minutes: 20
 
     steps:
-      - name: Checkout Repository
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Find and Select Latest Xcode
-        id: select-xcode
+      - name: 🔍 Show installed Xcode version
+        run: /usr/bin/xcodebuild -version
+
+      - name: 📦 Detect project file (.xcodeproj or .xcworkspace)
+        id: detect_project
         run: |
-          echo "🔍 Installed Xcode versions:"
-          ls -1d /Applications/Xcode*.app
+          if ls -A | grep -iq \.xcworkspace$; then
+            echo "filetype=workspace" >> "$GITHUB_OUTPUT"
+            echo "file=$(ls -A | grep -i \.xcworkspace$)" >> "$GITHUB_OUTPUT"
+          else
+            echo "filetype=project" >> "$GITHUB_OUTPUT"
+            echo "file=$(ls -A | grep -i \.xcodeproj$)" >> "$GITHUB_OUTPUT"
+          fi
 
-          # 가장 최신 버전을 선택 (숫자 기준 정렬 후 마지막 선택)
-          LATEST_XCODE=$(ls -1d /Applications/Xcode*.app | sort -V | tail -n 1)
-          echo "✅ Selecting $LATEST_XCODE"
-          sudo xcode-select -s "$LATEST_XCODE"
-
-          # 저장해서 이후 step에서 사용 가능하도록
-          echo "xcode_path=$LATEST_XCODE" >> $GITHUB_OUTPUT
-
-      - name: Show Selected Xcode Version
+      - name: ⚙️ Detect scheme
+        id: scheme
         run: |
-          xcodebuild -version
-          which xcodebuild
+          SCHEME=$(xcodebuild -list -${{ steps.detect_project.outputs.filetype }} "${{ steps.detect_project.outputs.file }}" -json | ruby -e "require 'json'; puts JSON.parse(STDIN.read)['project']['schemes'][0]")
+          echo "scheme=$SCHEME" >> "$GITHUB_OUTPUT"
 
-      - name: Build Project
+      - name: 📱 Detect available iPhone simulator
+        id: simulator
         run: |
-          SCHEME=$(xcodebuild -list -json | ruby -e "require 'json'; puts JSON.parse(STDIN.read)['project']['targets'][0]")
-          PROJECT_FILE=$(find . -name "*.xcodeproj" | head -n 1)
-          
-          DESTINATION=$(xcrun simctl list devices available | grep 'iPhone' | grep -v unavailable | head -n1 | awk -F '[()]' '{print "platform=iOS Simulator,name="$1",OS="$2}')
-          
-          echo "🏗️ Building scheme: $SCHEME"
-          echo "📱 Destination: $DESTINATION"
+          SIMULATOR_INFO=$(xcrun simctl list devices available | grep -E "iPhone 1[5-6] Pro Max|iPhone 1[5-6] Pro|iPhone 1[5-6]" | head -n 1)
+          DEVICE_NAME=$(echo "$SIMULATOR_INFO" | awk -F '[()]' '{print $1}' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+          DEVICE_OS=$(echo "$SIMULATOR_INFO" | awk -F '[()]' '{print $2}')
+          echo "device_name=$DEVICE_NAME" >> "$GITHUB_OUTPUT"
+          echo "device_os=$DEVICE_OS" >> "$GITHUB_OUTPUT"
+
+      - name: 🏗️ Build for testing
+        run: |
+          DESTINATION="platform=iOS Simulator,name=${{ steps.simulator.outputs.device_name }},OS=${{ steps.simulator.outputs.device_os }}"
+          echo "Using simulator: $DESTINATION"
           
           xcodebuild build-for-testing \
-            -project "$PROJECT_FILE" \
-            -scheme "$SCHEME" \
-            -destination "$DESTINATION"
+            -${{ steps.detect_project.outputs.filetype }} "${{ steps.detect_project.outputs.file }}" \
+            -scheme "${{ steps.scheme.outputs.scheme }}" \
+            -destination "$DESTINATION" \
+            | xcpretty
 
-      - name: Run Tests
+      - name: ✅ Run tests without rebuilding
         run: |
-          SCHEME=$(xcodebuild -list -json | ruby -e "require 'json'; puts JSON.parse(STDIN.read)['project']['targets'][0]")
-          PROJECT_FILE=$(find . -name "*.xcodeproj" | head -n 1)
-          DESTINATION=$(xcrun simctl list devices available | grep 'iPhone' | grep -v unavailable | head -n1 | awk -F '[()]' '{print "platform=iOS Simulator,name="$1",OS="$2}')
-          
-          echo "🧪 Testing scheme: $SCHEME"
-          echo "📱 Destination: $DESTINATION"
-          
+          DESTINATION="platform=iOS Simulator,name=${{ steps.simulator.outputs.device_name }},OS=${{ steps.simulator.outputs.device_os }}"
+          echo "Testing on: $DESTINATION"
+
           xcodebuild test-without-building \
-            -project "$PROJECT_FILE" \
-            -scheme "$SCHEME" \
-            -destination "$DESTINATION"
+            -${{ steps.detect_project.outputs.filetype }} "${{ steps.detect_project.outputs.file }}" \
+            -scheme "${{ steps.scheme.outputs.scheme }}" \
+            -destination "$DESTINATION" \
+            | xcpretty
