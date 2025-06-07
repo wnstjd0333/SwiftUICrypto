@@ -1,4 +1,4 @@
-name: iOS starter workflow
+name: iOS CI Workflow
 
 on:
   push:
@@ -7,61 +7,61 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build:
-    name: Build and Test using available iPhone simulator
-    runs-on: macos-latest
+  build-and-test:
+    name: Build and Test
+    runs-on: macos-13  # 또는 macos-14 (Xcode 15 이상에서만 iPhone 15 사용 가능)
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Select Xcode 16.2
+      - name: Select Xcode version (16.2)
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
       - name: Detect Default Scheme
+        id: detect-scheme
         run: |
-          scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo "$scheme_list" | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo "$default" > default_scheme.txt
-          echo "Default scheme: $default"
+          schemes_json=$(xcodebuild -list -json)
+          scheme=$(echo "$schemes_json" | ruby -e "require 'json'; puts JSON.parse(STDIN.read)['project']['targets'][0]")
+          echo "✅ Detected scheme: $scheme"
+          echo "SCHEME=$scheme" >> $GITHUB_ENV
 
       - name: Detect Available iOS Simulator
         id: find-simulator
         run: |
-          device=$(xcrun xctrace list devices 2>&1 | grep -E '^iPhone.*Simulator$' | head -n 1 | cut -d '(' -f1 | xargs)
-          os=$(xcrun xctrace list devices 2>&1 | grep -E '^iPhone.*Simulator$' | head -n 1 | grep -oE '\([^)]+\)' | tr -d '()')
-          echo "DEVICE_NAME=$device" >> $GITHUB_ENV
+          line=$(xcrun simctl list devices available | grep -E '^    iPhone' | head -n 1)
+          if [ -z "$line" ]; then
+            echo "❌ 사용 가능한 iPhone 시뮬레이터를 찾을 수 없습니다."
+            exit 1
+          fi
+          name=$(echo "$line" | awk -F ' (' '{print $1}' | xargs)
+          os=$(echo "$line" | grep -oE '\(([^)]+)\)' | tail -n1 | tr -d '()')
+
+          echo "🟢 Found simulator: $name ($os)"
+          echo "DEVICE_NAME=$name" >> $GITHUB_ENV
           echo "DEVICE_OS=$os" >> $GITHUB_ENV
-          echo "🟢 Using simulator: $device ($os)"
+
+      - name: Determine workspace or project
+        id: determine-file
+        run: |
+          if ls -A | grep -iq \.xcworkspace$; then
+            echo "FILE_TYPE=workspace" >> $GITHUB_ENV
+            echo "FILE_PATH=$(ls -A | grep -i \.xcworkspace$)" >> $GITHUB_ENV
+          else
+            echo "FILE_TYPE=project" >> $GITHUB_ENV
+            echo "FILE_PATH=$(ls -A | grep -i \.xcodeproj$)" >> $GITHUB_ENV
+          fi
 
       - name: Build for Testing
         run: |
-          scheme=$(cat default_scheme.txt)
-          if ls -A | grep -iq \.xcworkspace$; then
-            filetype="workspace"
-            file=$(ls -A | grep -i \.xcworkspace$)
-          else
-            filetype="project"
-            file=$(ls -A | grep -i \.xcodeproj$)
-          fi
-
           xcodebuild build-for-testing \
-            -scheme "$scheme" \
-            -$filetype "$file" \
+            -scheme "$SCHEME" \
+            -$FILE_TYPE "$FILE_PATH" \
             -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$DEVICE_OS"
 
-      - name: Run Tests
+      - name: Test without Building
         run: |
-          scheme=$(cat default_scheme.txt)
-          if ls -A | grep -iq \.xcworkspace$; then
-            filetype="workspace"
-            file=$(ls -A | grep -i \.xcworkspace$)
-          else
-            filetype="project"
-            file=$(ls -A | grep -i \.xcodeproj$)
-          fi
-
           xcodebuild test-without-building \
-            -scheme "$scheme" \
-            -$filetype "$file" \
+            -scheme "$SCHEME" \
+            -$FILE_TYPE "$FILE_PATH" \
             -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$DEVICE_OS"
