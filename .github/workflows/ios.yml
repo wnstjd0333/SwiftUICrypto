@@ -1,4 +1,4 @@
-name: iOS CI Workflow
+name: iOS Auto Xcode Workflow
 
 on:
   push:
@@ -7,61 +7,57 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build-and-test:
-    name: Build and Test
-    runs-on: macos-13  # 또는 macos-14 (Xcode 15 이상에서만 iPhone 15 사용 가능)
+  build:
+    runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Select Xcode version (16.2)
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app
-
-      - name: Detect Default Scheme
-        id: detect-scheme
+      - name: Find and Select Latest Xcode
+        id: select-xcode
         run: |
-          schemes_json=$(xcodebuild -list -json)
-          scheme=$(echo "$schemes_json" | ruby -e "require 'json'; puts JSON.parse(STDIN.read)['project']['targets'][0]")
-          echo "✅ Detected scheme: $scheme"
-          echo "SCHEME=$scheme" >> $GITHUB_ENV
+          echo "🔍 Installed Xcode versions:"
+          ls -1d /Applications/Xcode*.app
 
-      - name: Detect Available iOS Simulator
-        id: find-simulator
+          # 가장 최신 버전을 선택 (숫자 기준 정렬 후 마지막 선택)
+          LATEST_XCODE=$(ls -1d /Applications/Xcode*.app | sort -V | tail -n 1)
+          echo "✅ Selecting $LATEST_XCODE"
+          sudo xcode-select -s "$LATEST_XCODE"
+
+          # 저장해서 이후 step에서 사용 가능하도록
+          echo "xcode_path=$LATEST_XCODE" >> $GITHUB_OUTPUT
+
+      - name: Show Selected Xcode Version
         run: |
-          line=$(xcrun simctl list devices available | grep -E '^    iPhone' | head -n 1)
-          if [ -z "$line" ]; then
-            echo "❌ 사용 가능한 iPhone 시뮬레이터를 찾을 수 없습니다."
-            exit 1
-          fi
-          name=$(echo "$line" | awk -F ' (' '{print $1}' | xargs)
-          os=$(echo "$line" | grep -oE '\(([^)]+)\)' | tail -n1 | tr -d '()')
+          xcodebuild -version
+          which xcodebuild
 
-          echo "🟢 Found simulator: $name ($os)"
-          echo "DEVICE_NAME=$name" >> $GITHUB_ENV
-          echo "DEVICE_OS=$os" >> $GITHUB_ENV
-
-      - name: Determine workspace or project
-        id: determine-file
+      - name: Build Project
         run: |
-          if ls -A | grep -iq \.xcworkspace$; then
-            echo "FILE_TYPE=workspace" >> $GITHUB_ENV
-            echo "FILE_PATH=$(ls -A | grep -i \.xcworkspace$)" >> $GITHUB_ENV
-          else
-            echo "FILE_TYPE=project" >> $GITHUB_ENV
-            echo "FILE_PATH=$(ls -A | grep -i \.xcodeproj$)" >> $GITHUB_ENV
-          fi
-
-      - name: Build for Testing
-        run: |
+          SCHEME=$(xcodebuild -list -json | ruby -e "require 'json'; puts JSON.parse(STDIN.read)['project']['targets'][0]")
+          PROJECT_FILE=$(find . -name "*.xcodeproj" | head -n 1)
+          
+          DESTINATION=$(xcrun simctl list devices available | grep 'iPhone' | grep -v unavailable | head -n1 | awk -F '[()]' '{print "platform=iOS Simulator,name="$1",OS="$2}')
+          
+          echo "🏗️ Building scheme: $SCHEME"
+          echo "📱 Destination: $DESTINATION"
+          
           xcodebuild build-for-testing \
+            -project "$PROJECT_FILE" \
             -scheme "$SCHEME" \
-            -$FILE_TYPE "$FILE_PATH" \
-            -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$DEVICE_OS"
+            -destination "$DESTINATION"
 
-      - name: Test without Building
+      - name: Run Tests
         run: |
+          SCHEME=$(xcodebuild -list -json | ruby -e "require 'json'; puts JSON.parse(STDIN.read)['project']['targets'][0]")
+          PROJECT_FILE=$(find . -name "*.xcodeproj" | head -n 1)
+          DESTINATION=$(xcrun simctl list devices available | grep 'iPhone' | grep -v unavailable | head -n1 | awk -F '[()]' '{print "platform=iOS Simulator,name="$1",OS="$2}')
+          
+          echo "🧪 Testing scheme: $SCHEME"
+          echo "📱 Destination: $DESTINATION"
+          
           xcodebuild test-without-building \
+            -project "$PROJECT_FILE" \
             -scheme "$SCHEME" \
-            -$FILE_TYPE "$FILE_PATH" \
-            -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$DEVICE_OS"
+            -destination "$DESTINATION"
