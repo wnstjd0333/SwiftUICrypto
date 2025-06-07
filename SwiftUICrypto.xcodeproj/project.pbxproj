@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -51,7 +51,18 @@
 		F7A45435282FC6B2005E23F8 /* CoinLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A45434282FC6B2005E23F8 /* CoinLogoView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A24804812DF45ECC00234131 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7A453D3282B6A6A005E23F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7A453DE282B6A6D005E23F8;
+			remoteInfo = "SwiftUICrypto (iOS)";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		A248047D2DF45ECC00234131 /* SwiftUICryptoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUICryptoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73DAF6C282FEE7700BF067B /* PortfolioContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PortfolioContainer.xcdatamodel; sourceTree = "<group>"; };
 		F73DAF6E282FEF6B00BF067B /* PortfolioDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDataService.swift; sourceTree = "<group>"; };
 		F774510B28BB620E00133505 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -98,7 +109,18 @@
 		F7A45434282FC6B2005E23F8 /* CoinLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinLogoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A248047E2DF45ECC00234131 /* SwiftUICryptoTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SwiftUICryptoTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		A248047A2DF45ECC00234131 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F7A453DC282B6A6D005E23F8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +203,7 @@
 				F774511328C1ABB700133505 /* Test */,
 				F7A453D7282B6A6A005E23F8 /* Shared */,
 				F7A453E6282B6A6D005E23F8 /* macOS */,
+				A248047E2DF45ECC00234131 /* SwiftUICryptoTests */,
 				F7A453E0282B6A6D005E23F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -204,6 +227,7 @@
 			children = (
 				F7A453DF282B6A6D005E23F8 /* SwiftUICrypto.app */,
 				F7A453E5282B6A6D005E23F8 /* SwiftUICrypto.app */,
+				A248047D2DF45ECC00234131 /* SwiftUICryptoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -337,6 +361,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A248047C2DF45ECC00234131 /* SwiftUICryptoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A24804852DF45ECC00234131 /* Build configuration list for PBXNativeTarget "SwiftUICryptoTests" */;
+			buildPhases = (
+				A24804792DF45ECC00234131 /* Sources */,
+				A248047A2DF45ECC00234131 /* Frameworks */,
+				A248047B2DF45ECC00234131 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A24804822DF45ECC00234131 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A248047E2DF45ECC00234131 /* SwiftUICryptoTests */,
+			);
+			name = SwiftUICryptoTests;
+			packageProductDependencies = (
+			);
+			productName = SwiftUICryptoTests;
+			productReference = A248047D2DF45ECC00234131 /* SwiftUICryptoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F7A453DE282B6A6D005E23F8 /* SwiftUICrypto (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7A453F0282B6A6D005E23F8 /* Build configuration list for PBXNativeTarget "SwiftUICrypto (iOS)" */;
@@ -378,9 +425,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
+					A248047C2DF45ECC00234131 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = F7A453DE282B6A6D005E23F8;
+					};
 					F7A453DE282B6A6D005E23F8 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -404,11 +455,19 @@
 			targets = (
 				F7A453DE282B6A6D005E23F8 /* SwiftUICrypto (iOS) */,
 				F7A453E4282B6A6D005E23F8 /* SwiftUICrypto (macOS) */,
+				A248047C2DF45ECC00234131 /* SwiftUICryptoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A248047B2DF45ECC00234131 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F7A453DD282B6A6D005E23F8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -428,6 +487,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A24804792DF45ECC00234131 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F7A453DB282B6A6D005E23F8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -484,7 +550,67 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A24804822DF45ECC00234131 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7A453DE282B6A6D005E23F8 /* SwiftUICrypto (iOS) */;
+			targetProxy = A24804812DF45ECC00234131 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		A24804832DF45ECC00234131 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K7W3JP3F46;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.proto.appdaiku.SwiftUICryptoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUICrypto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUICrypto";
+			};
+			name = Debug;
+		};
+		A24804842DF45ECC00234131 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K7W3JP3F46;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.proto.appdaiku.SwiftUICryptoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUICrypto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUICrypto";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		F7A453EE282B6A6D005E23F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -718,6 +844,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A24804852DF45ECC00234131 /* Build configuration list for PBXNativeTarget "SwiftUICryptoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A24804832DF45ECC00234131 /* Debug */,
+				A24804842DF45ECC00234131 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F7A453D6282B6A6A005E23F8 /* Build configuration list for PBXProject "SwiftUICrypto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
